@@ -17,7 +17,8 @@
       register: key_out
 
     - name: Save private key into bastion-key.pem
-      copy: "{{key_out.key.private_key}}"
+      copy:
+        content: "{{key_out.key.private_key}}"
       dest: ./bastionkey.pem
       mode: 0600
       when: key.changed

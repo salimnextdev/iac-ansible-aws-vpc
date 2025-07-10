@@ -26,14 +26,14 @@
     - name: Create Security Group for Bastion Host
       ec2_group:
         name: Bastion-host-sg
-        deascription: Allow Port 22 from everywhere and within the SG
+        description: Allow Port 22 from everywhere and within the SG
         region: "{{ region }}"
         vpc_id: "{{ vpc_id }}"
         rules:
-          -proto: tcp
-          from_port: 22
-          to_port: 22
-          cidr_ip: "{{MYIP}}"
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: "{{MYIP}}"
       register: BastionSG_out
 
     - name: Creating Bastion Host

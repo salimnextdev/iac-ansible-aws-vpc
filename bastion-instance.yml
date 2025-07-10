@@ -19,8 +19,8 @@
     - name: Save private key into bastion-key.pem
       copy:
         content: "{{key_out.key.private_key}}"
-      dest: "./bastionkey.pem"
-      mode: 0600
+        dest: "./bastionkey.pem"
+        mode: 0600
       when: key.changed
 
     - name: Create Security Group for Bastion Host

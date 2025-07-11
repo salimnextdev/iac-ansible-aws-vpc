@@ -42,7 +42,7 @@
         region: "{{ region }}"
         instance_type: t2.micro
         image: 
-          id: {{ bastion_ami }}
+          id: "{{ bastion_ami }}"
         wait: yes
         wait_timeout: 300
         tags:

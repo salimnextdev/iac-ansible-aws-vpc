@@ -49,6 +49,6 @@
           Project: Vprofile
           Owner: DevOps Team
         exact_count: 1
-        security_group: "{{BastionSG_out_variable.group_id}}"
+        security_group: "{{BastionSG_out.group_id}}"
         vpc_subnet_id: "{{ pubsub1id }}"
       register: bastionHost_out

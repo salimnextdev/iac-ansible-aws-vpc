@@ -16,11 +16,11 @@
         region: "{{ region }}"
       register: key_out
 
-    - name: Save private key into bastion-key.pem
+    - name: Save private key into file bastion-key.pem
       copy:
-        content: "{{ key_out.key.private_key }}"
-        dest: "./bastionkey.pem"
-        mode: '0600'
+      content: "{{key_out.key.private_key}}"
+      dest: "./bastion-key.pem"
+      mode: 0600
       when: key_out.changed
 
     - name: Create Security Group for Bastion Host

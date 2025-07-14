@@ -1,5 +1,5 @@
 # iac-ansible-aws-vpc
-spinned up an Ubuntu EC2 Instance, instance_type: t2.mciro region: {{region}} (region from variables file optional but you can set your region name in your variables file, I used us-east-1) 
+spinned up an Ubuntu EC2 Instance, instance_type: t2.micro region: {{region}} (region from variables file optional but you can set your region name in your variables file, I used us-east-1) 
 
 Attached IAM Role to the Instance instead of using AWS access key and secret key as it seemed more security conscious and handong over the RBAC to te AWS account in its entirety.
 
@@ -28,3 +28,5 @@ then we launch the instance in the security group.
 Ran ansible-playbook for both vpc setup file first and then on completion I ran bastionHost playbook as well.
 VPC auto matically created an Elastic IP and attached tot he NAT Gateway. which you would have to release on project completion if you so wish to go through my work here. 
 Understand that the Bastion Host was created to access resources in the private subnet which are not directly accessible from the Internet.
+
+#Ensure to delete NAT Gateway and release Elastic IP to prevent surprise AWS billing. you would also have to delete the Bastion Host Instance before deleting the VPC, so Clean Up runs smoothly.

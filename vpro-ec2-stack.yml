@@ -66,16 +66,15 @@
           - proto: all
             group_id: "{{vprostackSG_out.group_id}}"
 
-    - name: Creating nginx web01
+    - name: Creating Nginx web01
       ec2_instance:
         key_name: vprokey
+        region: "{{ region }}"
         instance_type: t2.micro
         image:
           id: "{{nginx_ami}}"
-        wait: yes
-        wait_timeout: 300
-        instance_tags:
-          Name: "web01"
+        tags:
+          Name: "Bastion_host"
           Project: Vprofile
           Owner: Ansible Team
           group_id: "{{vprostackSG_out.group_id}}"
@@ -86,10 +85,11 @@
       ec2_instance:
         key_name: vprokey
         instance_type: t2.micro
-        image: "{{nginx_ami}}"
+        image:
+          id: "{{nginx_ami}}"
         wait: yes
         wait_timeout: 300
-        instance_tags:
+        tags:
           Name: "app01"
           Project: Vprofile
           Owner: Ansible Team
@@ -100,11 +100,12 @@
     - name: Creating memcache mc01
       ec2_instance:
         key_name: vprokey
-        isntance_type: t2.micro
-        image: "{{nginx_ami}}"
+        instance_type: t2.micro
+        image:
+          id: "{{nginx_ami}}"
         wait: yes
         wait_timeout: 300
-        instance_tags:
+        tags:
           Name: "mc01"
           Project: Vprofile
           Owner: Ansible Team
@@ -115,11 +116,12 @@
     - name: Creating RabbitMQ rmq01
       ec2_instance:
         key_name: vprokey
-        isntance_type: t2.micro
-        image: "{{nginx_ami}}"
+        instance_type: t2.micro
+        image:
+          id: "{{nginx_ami}}"
         wait: yes
         wait_timeout: 300
-        instance_tags:
+        tags:
           Name: "rmq01"
           Project: Vprofile
           Owner: Ansible Team
@@ -135,7 +137,7 @@
           id: "{{nginx_ami}}"
         wait: yes
         wait_timeout: 300
-        instance_tags:
+        tags:
           Name: "db01"
           Project: Vprofile
           Owner: Ansible Team

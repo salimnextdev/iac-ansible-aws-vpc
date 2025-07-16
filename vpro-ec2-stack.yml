@@ -166,7 +166,7 @@
           - "{{pubsub3id}}"
         listeners:
           - protocol: http
-            load_balancer: 80
+            load_balancer_port: 80
             instance_port: 80
 
 

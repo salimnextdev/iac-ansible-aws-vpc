@@ -25,6 +25,7 @@
 
     - name: Create Security Group for Load Balancer
       ec2_group:
+        name: ELBSG
         description: Allow Port 80 from everywhere and all ports within sg
         region: "{{region}}"
         vpc_id: "{{vpc_id}}"

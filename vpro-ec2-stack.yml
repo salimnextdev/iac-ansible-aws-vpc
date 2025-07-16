@@ -69,7 +69,7 @@
     - name: Creating nginx web01
       ec2_instance:
         key_name: vprokey
-        isntance_type: t2.micro
+        instance_type: t2.micro
         image:
           id: "{{nginx_ami}}"
         wait: yes
@@ -85,7 +85,7 @@
     - name: Creating tomcat app01
       ec2_instance:
         key_name: vprokey
-        isntance_type: t2.micro
+        instance_type: t2.micro
         image: "{{nginx_ami}}"
         wait: yes
         wait_timeout: 300

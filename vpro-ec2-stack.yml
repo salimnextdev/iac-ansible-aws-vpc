@@ -141,8 +141,6 @@
           vpc_subnet_id: "{{privsub1id}}"
       register: db01_out
 
-    - debug: db01_out
-
 
 
 

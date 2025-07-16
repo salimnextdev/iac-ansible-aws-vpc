@@ -150,8 +150,7 @@
       register: db01_out
 
     - debug:
-        var: db01_out.instances.instance_id
-
+        var: db01_out
     - local_action:
         module: ec2_elb_lb
         name: "vprofile-elb"

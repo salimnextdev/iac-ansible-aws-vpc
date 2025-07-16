@@ -157,7 +157,7 @@
         region: "{{region}}"
         state: present
         instance_ids:
-          - "{{web01_out.instances.instance_id}} "
+          - "i-029e1b6e3d0851ae7"
         purge_instance_ids: true
         security_group_ids: "{{vproELBSG_out.group_id}}"
         subnets:

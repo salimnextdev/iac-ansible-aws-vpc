@@ -151,9 +151,11 @@
 
     - debug:
         var: db01_out
+
     - local_action:
         module: ec2_elb_lb
         name: "vprofile-elb"
+        vpc: "{{vpc_id}}"
         region: "{{region}}"
         state: present
         instance_ids:

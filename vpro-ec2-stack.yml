@@ -70,7 +70,8 @@
       ec2_instance:
         key_name: vprokey
         isntance_type: t2.micro
-        image: "{{nginx_ami}}"
+        image:
+          id: "{{nginx_ami}}"
         wait: yes
         wait_timeout: 300
         instance_tags:
@@ -129,7 +130,7 @@
     - name: Creating MySQL db01
       ec2_instance:
         key_name: vprokey
-        isntance_type: t2.micro
+        instance_type: t2.micro
         image:
           id: "{{nginx_ami}}"
         wait: yes

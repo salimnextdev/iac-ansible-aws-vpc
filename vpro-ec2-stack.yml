@@ -152,25 +152,28 @@
     - debug:
         var: db01_out
 
-    - local_action:
-        module: ec2_elb_lb
-        name: "vprofile-elb"
-        vpc: "{{vpc_id}}"
-        region: "{{region}}"
-        state: present
-        instance_ids:
-          - "i-029e1b6e3d0851ae7"
-        purge_instance_ids: true
-        security_group_ids: "{{vproELBSG_out.group_id}}"
-        subnets:
-          - "{{pubsub1id}}"
-          - "{{pubsub2id}}"
-          - "{{pubsub3id}}"
-        listeners:
-          - protocol: http
-            load_balancer_port: 80
-            instance_port: 80
-
+    - name: Create the Application Load Balancer vproELB
+      hosts: localhost
+      gather_facts: no
+      tasks:
+        - name: Manage Load Balancer
+          local_action:
+            module: ec2_elb_lb_v2
+            name: vproELB
+            state: present
+            region: "{{ region }}"
+            instance_ids:
+              - "i-029e1b6e3d0851ae7"
+            purge_instance_ids: true
+            security_group_ids: "{{ vproELBSG_out.group_id }}"
+            subnets:
+              - "{{ pubsub1id }}"
+              - "{{ pubsub2id }}"
+              - "{{ pubsub3id }}"
+            listeners:
+              - protocol: http
+                load_balancer_port: 80
+                instance_port: 80
 
 
 

@@ -157,7 +157,6 @@
         name: "vprofile-elb"
         state: present
         scheme: internet-facing
-        purge_instance_ids: true
         security_group_ids: "{{vprostackSG_out.group_id}}"
         subnets:
           - "{{pubsub1id}}"
@@ -178,8 +177,6 @@
             instance_port: 80
             DefaultActions:
               - Type: forward # Required. Only 'forward' is accepted at this time
-                TargetGroupName: mytargetgroup # Required. The name of the target group
-        state: present
         purge_listeners: true
 
     - name: Attach security group to Vprofile-ELB

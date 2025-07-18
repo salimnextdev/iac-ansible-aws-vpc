@@ -181,7 +181,7 @@
         state: present
 
     - name: Purge Listeners from Load Balancer
-      community.aws.elb_network_lb_listener:
+      community.aws.elb_network_lb:
         load_balancer_arn: "{{ nlb.load_balancer_arn }}"
         state: absent  # This will remove all listeners associated with the load balancer
       when: nlb.load_balancer_arn is defined

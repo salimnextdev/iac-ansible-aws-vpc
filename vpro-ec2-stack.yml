@@ -167,12 +167,15 @@
 
     - name: Create Listener for the Network Load Balancer
       community.aws.elb_network_lb_listener:
-        load_balancer_arn: "{{ nlb.load_balancer_arn }}"
+        name: las-listener
         port: 80  # Change to your desired port
         protocol: TCP  # Change to your desired protocol (e.g., TCP or UDP)
         default_actions:
           - type: forward
-            target_group_arn: "{{ target_group_arn }}"  # Ensure this variable is defined
+            target_group_arn:
+        load_balancer_arn: "{{ nlb.load_balancer_arn }}"
+        state: present
+        region: "{{region}}"
       register: listener
 
 

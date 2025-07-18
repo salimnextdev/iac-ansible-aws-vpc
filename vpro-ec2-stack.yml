@@ -174,7 +174,6 @@
         listeners:
           - Protocol: TCP # Required. The protocol for connections from clients to the load balancer (TCP, TLS, UDP or TCP_UDP) (case-sensitive).
             Port: 80 # Required. The port on which the load balancer is listening.
-            instance_port: 80
             DefaultActions:
               - Type: forward # Required. Only 'forward' is accepted at this time
         purge_listeners: true

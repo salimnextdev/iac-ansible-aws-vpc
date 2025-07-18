@@ -165,9 +165,9 @@
           - "{{pubsub3id}}"
       register: nlb
 
-    - name: Create Load Balancer Listener
+    - name: Create an ELB and attach a listener
       community.aws.elb_network_lb:
-        name: myelb
+        name: vprofile-elb
         subnets:
           - "{{pubsub1id}}"
           - "{{pubsub2id}}"
@@ -175,16 +175,24 @@
         listeners:
           - Protocol: TCP # Required. The protocol for connections from clients to the load balancer (TCP, TLS, UDP or TCP_UDP) (case-sensitive).
             Port: 80 # Required. The port on which the load balancer is listening.
+            instance_port: 80
             DefaultActions:
               - Type: forward # Required. Only 'forward' is accepted at this time
                 TargetGroupName: mytargetgroup # Required. The name of the target group
         state: present
+        purge_listeners: true
 
-    - name: Purge Listeners from Load Balancer
-      community.aws.elb_network_lb:
-        load_balancer_arn: "{{ nlb.load_balancer_arn }}"
-        state: absent  # This will remove all listeners associated with the load balancer
-      when: nlb.load_balancer_arn is defined
+    - name: Attach security group to Vprofile-ELB
+      elb_application_lb:
+        name: "vprofile-elb"  # Replace with your ELB name
+        security_groups:
+          - "{{vprostackSG_out.group_id}}" # Replace with your security group ID
+        state: present
+        region: us-east-1  # Replace with your AWS region
+      register: elb_result
+
+    - debug:
+        var: elb_result
 
 
 

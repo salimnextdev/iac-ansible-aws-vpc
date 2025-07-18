@@ -153,6 +153,7 @@
         var: db01_out.instance_ids[0]
     - local_action:
         module: community.aws.elb_network_lb
+        name: "vprofile-elb"
         purge_instance_ids: true
         security_group_ids: "{{vprostackSG_out.group_id}}"
         subnets:

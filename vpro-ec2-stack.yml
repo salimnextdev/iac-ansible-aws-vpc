@@ -181,6 +181,7 @@
     - name: Attach security group to Vprofile-ELB
       elb_application_lb:
         region: "{{region}}"
+        availability_zones: us-east-1b
         name: "vprofile-elb"  # Replace with your ELB name
         security_groups:
           - "{{vprostackSG_out.group_id}}" # Replace with your security group ID

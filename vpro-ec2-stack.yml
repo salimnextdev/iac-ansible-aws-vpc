@@ -149,5 +149,15 @@
           vpc_subnet_id: "{{privsub1id}}"
       register: db01_out
 
+    - debug:
+        var: db01.out
+
+    - debug:
+        var: mc01.out
+
+    - debug:
+        var: rmq01.out
+
+
 
 

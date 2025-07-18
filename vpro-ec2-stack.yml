@@ -166,7 +166,7 @@
       register: nlb
 
     - name: Create Network Load Balancer Listener
-      community.aws.elb_network_lb_listener:
+      community.aws.elb.network_lb_listener:
         load_balancer_arn: "{{ nlb.load_balancer_arn }}"
         port: 80
         protocol: TCP

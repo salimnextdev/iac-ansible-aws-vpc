@@ -152,22 +152,20 @@
     - debug:
         var: db01_out.instance_ids[0]
 
-    - name: Create Network Load Balancer
-      comunity:
-        aws:
-          elb_network_lb:
-          name: "vprofile-elb"
-          state: present
-          scheme: internet-facing
-          purge_instance_ids: true
-          security_group_ids: "{{vprostackSG_out.group_id}}"
-          subnets:
-            - "{{pubsub1id}}"
-            - "{{pubsub2id}}"
-            - "{{pubsub3id}}"
-        register: nlb
+    - local_action:
+      community.aws.elb_network_lb:
+        name: "vprofile-elb"
+        state: present
+        scheme: internet-facing
+        purge_instance_ids: true
+        security_group_ids: "{{vprostackSG_out.group_id}}"
+        subnets:
+          - "{{pubsub1id}}"
+          - "{{pubsub2id}}"
+          - "{{pubsub3id}}"
+      register: nlb
 
-    - name: Create Network Load Balancer Listeners
+    - local_action:
       community.aws.elb_network_lb_listener:
         load_balancer_arn: "{{ nlb.load_balancer_arn }}"
         port: 80  # Change to your desired port

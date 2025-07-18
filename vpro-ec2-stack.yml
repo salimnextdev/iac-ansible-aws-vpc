@@ -154,6 +154,7 @@
 
     - name: Create Network Load Balancer
       community.aws.elb_network_lb:
+        region: "{{region}}"
         name: "vprofile-elb"
         state: present
         scheme: internet-facing

@@ -147,16 +147,16 @@
           Owner: Ansible Team
           group_id: "{{vprostackSG_out.group_id}}"
           vpc_subnet_id: "{{privsub1id}}"
-      register: db01_out.association.private_ip_address[0]
+      register: db01_out.instance_id
 
     - debug:
-        var: db01_out
+        var: db01_out.instance_id
 
     - debug:
-        var: mc01_out
+        var: mc01_out.instance_id
 
     - debug:
-        var: rmq01_out
+        var: rmq01_out.instance_id
 
 
 

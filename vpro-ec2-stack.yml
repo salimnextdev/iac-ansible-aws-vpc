@@ -157,7 +157,6 @@
         name: "vprofile-elb"
         state: present
         scheme: internet-facing
-        security_group_ids: "{{vprostackSG_out.group_id}}"
         subnets:
           - "{{pubsub1id}}"
           - "{{pubsub2id}}"

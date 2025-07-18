@@ -150,13 +150,13 @@
       register: db01_out.instance_id
 
     - debug:
-        var: db01_out.instance_id
+        var: db01_out.instance_ids[0]
 
     - debug:
-        var: mc01_out.instance_id
+        var: mc01_out.instance_id[0]
 
     - debug:
-        var: rmq01_out.instance_id
+        var: rmq01_out.instance_id[0]
 
 
 

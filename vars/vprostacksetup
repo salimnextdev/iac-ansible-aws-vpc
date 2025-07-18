@@ -3,3 +3,4 @@ rmq_ami: ami-034568121cfdea9c3
 memcache_ami: ami-034568121cfdea9c3
 mysql_ami: ami-034568121cfdea9c3
 tomcat_ami: ami-034568121cfdea9c3
+region: us-east-1

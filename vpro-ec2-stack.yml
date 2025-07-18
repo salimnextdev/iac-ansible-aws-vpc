@@ -150,13 +150,13 @@
       register: db01_out
 
     - debug:
-        var: db01.out
+        var: db01_out
 
     - debug:
-        var: mc01.out
+        var: mc01_out
 
     - debug:
-        var: rmq01.out
+        var: rmq01_out
 
 
 

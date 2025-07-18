@@ -165,18 +165,20 @@
           - "{{pubsub3id}}"
       register: nlb
 
-    - name: Create Listener for the Network Load Balancer
-      community.aws.elb_network_lb_listener:
-        name: las-listener
-        port: 80  # Change to your desired port
-        protocol: TCP  # Change to your desired protocol (e.g., TCP or UDP)
-        default_actions:
-          - type: forward
-            target_group_arn:
-        load_balancer_arn: "{{ nlb.load_balancer_arn }}"
+    - name: Create Load Balancer Listener
+      community.aws.elb_network_lb:
+        name: myelb
+        subnets:
+          - "{{pubsub1id}}"
+          - "{{pubsub2id}}"
+          - "{{pubsub3id}}"
+        listeners:
+          - Protocol: TCP # Required. The protocol for connections from clients to the load balancer (TCP, TLS, UDP or TCP_UDP) (case-sensitive).
+            Port: 80 # Required. The port on which the load balancer is listening.
+            DefaultActions:
+              - Type: forward # Required. Only 'forward' is accepted at this time
+                TargetGroupName: mytargetgroup # Required. The name of the target group
         state: present
-        region: "{{region}}"
-      register: listener
 
 
 
